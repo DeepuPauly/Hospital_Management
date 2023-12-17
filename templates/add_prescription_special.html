@@ -1,0 +1,41 @@
+{% include 'specialist_header.html' %}
+
+<br><br><br>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost&family=Mulish&family=Ysabeau+Office:wght@200&display=swap" rel="stylesheet">
+
+<style>
+        .patfont{
+        font-family: 'arial', sans-serif;
+        font-size: 35px;
+        color:black;
+        text-shadow: 2px 2px 6px rgba(45, 79, 233, 0.5);
+    }
+</style>
+
+
+<br><br><br>
+<h1 class="text-center m-5 patfont">Add Prescription</h1>
+
+<form method="post" class="mx-auto p-4" style="max-width: 600px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); border-radius: 8px;">
+    <div class="form-group">
+        <label for="medicineSelect" class="medicines mb-2 fs-5 " >Medicines</label>
+        <select name="medicine_id" id="medicineSelect" class="form-control mb-3">
+            {% for i in data['view'] %}
+            <option value="{{ i['medicine_id'] }}">{{ i.medicine_name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="description" class="mb-2 fs-5">Description</label>
+        <textarea name="description" id="description" class="form-control" cols="30" rows="10"></textarea>
+    </div>
+    <div class="text-center">
+        <input type="submit" value="Submit" name="submit" class="btn btn-primary px-3 mt-3">
+    </div>
+</form>
+
+{% include 'specialist_footer.html' %}
+
+

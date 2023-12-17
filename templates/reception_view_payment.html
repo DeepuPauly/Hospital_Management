@@ -1,0 +1,128 @@
+{% include 'reception_header.html' %}
+
+
+
+<style>
+    .google-search-container {
+        display: flex;
+        align-items: center;
+        width: 300px; /* Adjust the width as needed */
+        margin: 0 auto;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+
+    .google-search-input {
+        flex: 1;
+        padding: 10px;
+        border: none;
+        outline: none;
+    }
+    
+    .google-search-button {
+        padding: 10px 15px;
+        background-color: #4285f4;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+    }
+
+/* Center-align the table */
+.table-container {
+    text-align: center;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    max-width: 100%; /* Make table responsive */
+}
+
+/* Style the table */
+.payment-table {
+    width: 100%; /* Set table width to 100% */
+    border-collapse: collapse; /* Ensure borders are consistent */
+    /* Add other table styles as needed */
+}
+.New {
+        display: none;
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+        color: #FF0000; /* Red color */
+        margin-top: 20px;
+        padding: 10px;
+        border: 2px dashed #FF0000; /* Red dashed border */
+        border-radius: 5px;
+    }
+
+</style>
+<br><br><br>
+<div class="container py-lg-5">
+    <h1><b>VIEW PAYMENT</b></h1>
+    <br>
+    <div class="google-search-container">
+        <input type="text" class="google-search-input" id="search" placeholder="SEARCH PAYMENT DETAILS  ...........">
+        <button class="google-search-button" id="searchButton">Search</button>
+    </div>
+
+<br><br>
+<div class="table-container">
+        <table align="center" border="1" class="table table-success table-striped"  >
+            <tr>
+                <th>SL NO.</th>
+                <th>NAME</th>
+                <th>Amount</th>
+                <th>DATE OF PAYMENT</th>
+                <th>TYPE OF PAYMENT</th>
+                <th>STATUS</th>
+            </tr>
+            {% for i in data['view'] %}
+            <tr class="member-row">
+                <td>{{loop.index}}</td>
+                <td>{{i['first_name']}}</td>
+                <td>{{i['amount']}}</td>
+                <td>{{i['payment_date']}}</td>
+                <td>{{i['payment_type']}}</td>
+                <td>{{i['status']}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class='New' style="display: none;">No results found</div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#search").on("keyup", function () {
+                var searchTerm = $(this).val().toLowerCase();
+                var found = false; // Flag to check if any results are found
+
+                $(".member-row").each(function () {
+                    var text = $(this).text().toLowerCase();
+                    var match = text.indexOf(searchTerm) >= 0;
+                    $(this).toggle(match); // Toggle based on match
+
+                    if (match) {
+                        found = true; // Set flag to true if any match is found
+                    }
+                });
+
+                if (!found) {
+                    $(".New").show();
+                    $(".table-container").hide();
+                } else {
+                    $(".New").hide();
+                    $(".table-container").show();
+                }
+            });
+        });
+    </script>
+</div>
+    
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
+    
+
+{% include 'reception_footer.html' %}

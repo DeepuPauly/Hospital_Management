@@ -1,0 +1,285 @@
+{% include 'patient_header.html'%}
+      <!--====== VIDEO COUNTER PART START ======-->
+      <div class="container">
+      <section id="facts" class="video-counter pt-70">
+        <br>
+        <br>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="input-group mb-3">
+                      <input type="text" id="search-input" class="form-control" placeholder="Search..." onkeyup="performSearch()">
+        
+                        <button type="button" id="search-button" class="main-btn"
+                        >Search</button>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 20px; display: flex; flex-wrap: wrap; justify-content: center;" id="doctorCards">
+
+              {% for doctor in data['view'] %}
+                  <div style="margin: 10px; overflow: hidden; width: 300px; transition: transform 0.3s ease-in-out; border: 2px solid #3498db; border-radius: 15px;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                      <img src="{{ doctor['image'] }}" alt="{{ doctor['first_name'] }} {{ doctor['last_name'] }}" style="height: 200px; width: 100%; object-fit: contain; border-radius: 15px 15px 0 0;">
+                      <div style="text-align: center; padding: 15px;">
+                          <h5 style="margin-bottom: 10px; color: black;">{{ doctor['first_name'] }} {{ doctor['last_name'] }}</h5>
+                          <p  style="color: black;">
+                              <strong style="color: black;">Phone:</strong> {{ doctor['phone'] }}<br>
+                              <strong  style="color: black;">Email:</strong> {{ doctor['email'] }}<br>
+                              <strong style="color: black;">Location:</strong> {{ doctor['place'] }}<br>
+                              <strong style="color: black;">Qualification:</strong> {{ doctor['qualification'] }}
+                          </p>
+                          <a href="view_schedule?id={{ doctor['doctor_id'] }}" style="text-decoration: none; color: #fff; background-color: #3498db; padding: 8px 15px; border-radius: 5px;">View Schedule</a>
+                      </div>
+                  </div>
+              {% endfor %}
+      
+          </div>
+          <!-- row -->
+        </div>
+      </section>
+    </div>
+      <!--====== VIDEO COUNTER PART ENDS ======-->
+
+<style>
+      body {
+        margin: 0;
+        padding: 0;
+        position: relative;
+        width: 100%;
+        height: 100vh; /* Adjust as needed */
+      }
+  
+      video#video-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Ensure the video covers the entire viewport */
+        z-index: -1; /* Places the video behind other elements */
+      }
+  
+  .figure {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .figure video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+  }
+  
+  /* Basic styles remain the same */
+  
+  /* Advanced styles */
+  .profile-card {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    margin: 10px auto; /* Centering horizontally */
+    margin-top: 90px; /* Slight downward positioning */
+  }
+  
+  .profile-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .profile-header {
+    display: flex;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+    align-items: center;
+  }
+  
+  .profile-picture {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+
+  
+  .profile-picture:hover {
+    transform: scale(1.05);
+  }
+  
+  .profile-info {
+    flex: 1;
+  }
+  
+  .profile-name {
+    margin: 0;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .profile-description {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .profile-links {
+    margin-top: 10px;
+  }
+  
+  .profile-link {
+    text-decoration: none;
+    color: #007bff;
+    margin-right: 10px;
+    transition: color 0.3s ease;
+  }
+  
+  .profile-link:hover {
+    text-decoration: underline;
+    color: #0056b3;
+  }
+  
+  .profile-body {
+    padding: 20px;
+  }
+  
+  .additional-info {
+    font-size: 16px;
+    color: #444;
+    margin-top: 0;
+  }
+  .row.justify-content-center {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-around;
+          /* Adjust spacing as needed */
+          margin-top: 90px;
+      }
+  
+      .col-lg-3 {
+          margin-bottom: 20px; /* Adjust spacing between cards */
+      }
+  
+      .input-group {
+          margin-bottom: 20px;
+      }
+  
+      /* Adjust the following styles according to your design */
+      .form-control {
+          border-radius: 0;
+      }
+  
+      .btn {
+          border-radius: 0;
+      }
+      .col-lg-3 {
+      margin-bottom: 10px; /* Adjust spacing between cards */
+  }
+  
+  .row.justify-content-center {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      margin-top: 40px; /* Adjust spacing between rows */
+      margin-bottom: 40px; /* Add margin at the bottom of the row if needed */
+  }
+  
+  
+  
+  .col-lg-4 {
+  margin-bottom: 20px; /* Adjust spacing between cards */
+}
+
+@media (max-width: 992px) {
+  .col-lg-4 {
+    flex: 0 0 50%; /* Two cards per row on medium screens */
+    max-width: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .col-lg-4 {
+    flex: 0 0 100%; /* One card per row on small screens */
+    max-width: 100%;
+  }
+}
+  
+  
+    </style>
+  
+  <script>
+    function performSearch() {
+    var query = document.getElementById('search-input').value;
+    // AJAX request to fetch search results
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                var data = JSON.parse(xhr.responseText);
+                displaySearchResults(data);
+            } else {
+                console.error('Error: ' + xhr.status);
+            }
+        }
+    };
+
+    xhr.open('GET', '/search?query=' + query, true);
+    xhr.send();
+}
+
+function displaySearchResults(results) {
+    const doctorCardsDiv = document.getElementById('doctorCards');
+    doctorCardsDiv.innerHTML = ''; // Clear previous results
+
+    if (results.length === 0) {
+        doctorCardsDiv.innerHTML = `
+        <div style="text-align: center;">
+            <img src="/static/sad.gif" style="display:block; margin: 0 auto; max-width: 100px;" align="center">
+            <h3 style="color:red; text-align:center;">No data found</h3>
+        </div>`;
+    } else {
+        results.forEach(doctor => {
+            const doctorCard = document.createElement('div');
+            doctorCard.style = "margin: 10px; overflow: hidden; width: 300px; transition: transform 0.3s ease-in-out; border: 2px solid #3498db; border-radius: 15px;";
+            doctorCard.onmouseover = function () { this.style.transform = 'scale(1.1)' };
+            doctorCard.onmouseout = function () { this.style.transform = 'scale(1)' };
+
+            const doctorHTML = `
+                <img src="${doctor.image}" alt="${doctor.first_name} ${doctor.last_name}" style="height: 200px; width: 100%; object-fit: contain; border-radius: 15px 15px 0 0;">
+                <div style="text-align: center; padding: 15px;">
+                    <h5 style="margin-bottom: 10px; color: black;">${doctor.first_name} ${doctor.last_name}</h5>
+                    <p style="color: black;">
+                        <strong style="color: black;">Phone:</strong> ${doctor.phone}<br>
+                        <strong style="color: black;">Email:</strong> ${doctor.email}<br>
+                        <strong style="color: black;">Location:</strong> ${doctor.place}<br>
+                        <strong style="color: black;">Qualification:</strong> ${doctor.qualification}
+                    </p>
+                    <a href="view_schedule?id=${doctor.doctor_id}" style="text-decoration: none; color: #fff; background-color: #3498db; padding: 8px 15px; border-radius: 5px;">View Schedule</a>
+
+                </div>
+            `;
+
+            doctorCard.innerHTML = doctorHTML;
+            doctorCardsDiv.appendChild(doctorCard);
+        });
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Your other code
+});
+
+    </script>
+    
+  
+
+      {% include 'pat_footer.html'%}
+

@@ -1,0 +1,88 @@
+{% include 'public_header.html'%}
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<!-- ======= hero Section ======= -->
+<section id="hero">
+  <div class="hero-container">
+    <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+
+
+      <div class="carousel-inner" role="listbox">
+
+        <div class="carousel-item active" style="background-image: url(static/assets/img/hero-carousel/1.jpg)">
+          <div class="carousel-container">
+            <div class="container">
+              <div id="card">
+                <div id="card-content">
+                  <div id="card-title">
+                    <h2 style="color: black;">Enter OTP</h2>
+                    <div class="underline-title"></div>
+                  </div>
+                  <form method="post">
+                    {% if data['chp'] %}
+                        <center>
+                            <h2>Change Password</h2>
+                            <table class="table" style="width: 500px;color: rgb(10, 10, 10);">
+                                <tr>
+                                    <th>Username</th>
+                                    <td><input type="text" readonly="" value="{{data['chp']}}" class="form-control" name="uname"></td>
+                                </tr>
+                                <tr>
+                                    <th>Password</th>
+                                    <td><input type="password" required="" class="form-control" name="pwd"></td>
+                                </tr>
+                                <tr>
+                                    <th>Confirm Password</th>
+                                    <td><input type="password" required="" class="form-control" name="pwds"></td>
+                                </tr>
+                                <tr>	
+                                    <td align="center" colspan="2"><input type="submit" name="update" value="Submit" class="btn btn-danger"></td>
+                                </tr>
+                            </table>
+                {%else%}
+                
+                            <h2>OTP</h2>
+                            <table class="table" style="width: 500px;color: white;">
+                                <tr>
+                                    <th>OTP</th>
+                                    <td style="color: white"><input type="text" name="otp"  class="form-control" ></td>
+                                </tr>
+                                <tr>
+                                    
+                                    <td align="center" colspan="2"><input type="submit" name="submit" value="Submit" class="btn btn-danger"></td>
+                
+                                </tr>
+                            </table>
+                        </center>
+                    </form>
+                            {%endif%}					
+                                            	
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+       
+
+
+
+    </div>
+  </div>
+</section><!-- End Hero Section -->
+
+				
+					
+
+	
+{% include'public_footer.html' %}

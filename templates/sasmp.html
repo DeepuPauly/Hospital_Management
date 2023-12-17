@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Future Time Selection</title>
+</head>
+<body>
+  <form>
+    <label for="time">Select a time:</label>
+    <input type="time" id="timeInput" name="time" required>
+  </form>
+
+  <script>
+    // Get the input element
+    const timeInput = document.getElementById('timeInput');
+
+    // Function to handle input validation
+    function validateTimeInput() {
+      const selectedTime = new Date(`2000-01-01T${timeInput.value}`);
+      const currentTime = new Date();
+
+      if (selectedTime < currentTime) {
+        // Reset input value to the current time
+        const currentHours = currentTime.getHours();
+        const currentMinutes = currentTime.getMinutes();
+        timeInput.value = `${String(currentHours).padStart(2, '0')}:${String(currentMinutes).padStart(2, '0')}`;
+      }
+    }
+
+    // Set minimum time to the current time
+    const now = new Date();
+    const currentHours = now.getHours();  
+    const currentMinutes = now.getMinutes();
+    timeInput.min = `${String(currentHours).padStart(2, '0')}:${String(currentMinutes).padStart(2, '0')}`;
+
+    // Add event listener for input change
+    timeInput.addEventListener('input', validateTimeInput);
+  </script>
+</body>
+</html>

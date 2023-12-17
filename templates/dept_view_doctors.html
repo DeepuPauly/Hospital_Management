@@ -1,0 +1,103 @@
+{% include 'dept_header.html' %}
+
+<style>
+    .google-search-container {
+        display: flex;
+        align-items: center;
+        width: 300px; /* Adjust the width as needed */
+        margin: 0 auto;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+
+    .google-search-input {
+        flex: 1;
+        padding: 10px;
+        border: none;
+        outline: none;
+    }
+    
+    .google-search-button {
+        padding: 10px 15px;
+        background-color: #4285f4;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+    }
+</style>
+<body style="background-image: url('https://cdn.sanity.io/images/0vv8moc6/contobgyn/ed026bcf64e9593168e34049e3821b9ecf24c68c-7068x3800.jpg?fit=crop&auto=format');background-repeat: no-repeat;background-size: cover;">
+    
+
+
+<br><br><br><br><br>
+<div class="container py-lg-5">
+    <div id="noResultsMessage" style="display: none; text-align: center; margin-top: 10px; color: #f00; font-weight: bold;">No matching results found </div>
+    <div class="google-search-container">
+        <input type="text" class="google-search-input" id="search" placeholder="Search doctors...">
+        <button class="google-search-button" id="searchButton">Search</button>
+    </div>
+
+
+    <br><br><br><br>
+
+    <div style="margin-top: 20px; display: flex; flex-wrap: wrap; justify-content: center;" id="doctorCards">
+
+        {% for doctor in data['view'] %}
+            <div style="margin: 10px; overflow: hidden; width: 300px; transition: transform 0.3s ease-in-out; border: 2px solid #3498db; border-radius: 15px;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                <img src="{{ doctor['image'] }}" alt="{{ doctor['first_name'] }} {{ doctor['last_name'] }}" style="height: 200px; width: 100%; object-fit: contain; border-radius: 15px 15px 0 0;">
+                <div style="text-align: center; padding: 15px;">
+                    <h5 style="margin-bottom: 10px; color: black;">{{ doctor['first_name'] }} {{ doctor['last_name'] }}</h5>
+                    <p  style="color: black;">
+                        <strong style="color: black;">Phone:</strong> {{ doctor['phone'] }}<br>
+                        <strong  style="color: black;">Email:</strong> {{ doctor['email'] }}<br>
+                        <strong style="color: black;">Location:</strong> {{ doctor['place'] }}<br>
+                        <strong style="color: black;">Qualification:</strong> {{ doctor['qualification'] }}
+                    </p>
+                    <a href="dept_schedule_consulting?action=schedule&doctor_id={{ doctor['doctor_id'] }}" style="text-decoration: none; color: #fff; background-color: #3498db; padding: 8px 15px; border-radius: 5px;">Schedule</a>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+</div>
+</body>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+      $("#search").on("input", function () {
+          var searchTerm = $(this).val().toLowerCase();
+          var found = false;
+
+          $("#doctorCards > div").each(function () {
+              var doctorName = $(this).find("h5").text().toLowerCase();
+              var showDoctorCard = doctorName.indexOf(searchTerm) >= 0;
+              $(this).toggle(showDoctorCard);
+
+              if (showDoctorCard) {
+                  found = true;
+              }
+          });
+
+          if (!found) {
+              // If no matching results found, display a message
+              $("#noResultsMessage").show();
+          } else {
+              // If matching results found, hide the message
+              $("#noResultsMessage").hide();
+          }
+      });
+  });
+</script>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+    integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+    integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+    crossorigin="anonymous"></script>
+
+{% include 'dept_footer.html' %}

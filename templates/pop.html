@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pop-up Example</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        /* Center align contents within the modal body */
+        .modal-body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="customModal" tabindex="-1" aria-labelledby="customModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <img src="/static/overthinking.gif" alt="Smiley Image" style="width: 100px; height: 100px; border-radius: 20px;">
+                <h3 style="color: red;">Uh Oh! Looks like you already requested.</h3>
+                <button type="button" class="btn btn-primary" onclick="redirectToBookDoctor()">Go Back</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // Function to redirect to the book_doctor route
+    function redirectToBookDoctor() {
+        window.location.href = '/request_ambulance';
+    }
+
+    // Show the modal when the page is loaded
+    window.onload = function() {
+        var myModal = new bootstrap.Modal(document.getElementById('customModal'));
+        myModal.show();
+    };
+</script>
+
+</body>
+</html>

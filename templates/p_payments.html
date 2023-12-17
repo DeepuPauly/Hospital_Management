@@ -1,0 +1,56 @@
+{% include 'pharmacy_header.html' %}
+<style type="text/css">
+    .navbar-area {
+        background-color: blue; /* Change this to your desired shade of blue */
+    }
+
+    .card-container {
+        width: 300px; /* Adjust the width as needed */
+        margin: 10px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-header {
+        background-color: black;
+        color: white;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .card-body {
+        padding: 15px;
+    }
+
+    .card-link {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    .card-link:hover {
+        text-decoration: underline;
+    }
+</style>
+<br>
+<br>
+<div class="container py-lg-5">
+	<h2 class="text-center mt-4 mb-4">Payment Details</h2>
+	<div class="d-flex justify-content-center">
+    {% for i in data['view'] %}
+    <div class="card-container">
+        <div class="card-header">
+            Patient: {{i.first_name}}
+        </div>
+        <div class="card-body">
+            <p><strong>Payment Date:</strong> {{i.payment_date}}</p>
+            <p><strong>Amount:</strong> {{i.amount}}</p>
+            <p><strong>Status:</strong> {{i.pstatus}}</p> 
+            
+        </div>
+    </div>
+    {% endfor %}
+    </div>
+</div>
+{% include 'footer.html' %}

@@ -1,0 +1,119 @@
+{% include 'lab_header.html' %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<style>
+    form {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    table {
+        width: 100%;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: left;
+    }
+
+    select, textarea {
+        width: 100%;
+        padding: 8px;
+        margin: 5px 0;
+        box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+
+    .navbar-area {
+        background-color: blue; /* Change this to your desired shade of blue */
+    }
+    
+    .new {
+        font-family: serif; /* Replace 'YourNewFont' with the desired font */
+        color: black;
+        text-align: center;
+        font-size: 3em;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-shadow: 2px 2px 4px rgba(1, 3, 7, 0.2);
+        display: inline-block;
+        padding: 10px;
+    }
+
+    .center-form {
+        text-align: center;
+        margin-top: 20px;
+    }
+</style>
+<center>
+    <h1 class="new">Report file</h1>
+</center>
+<form method="post" enctype="multipart/form-data" id="uploadForm">
+
+    <table>
+        <tr>
+            <th>report file</th>
+            <td><input type="file" name="report_file" onchange="validateFile(this)">
+                <span id="errorMessage" style="color: red; display: none;"></span>
+            </td>
+        </tr>
+        <tr>
+            <th>rate</th>
+            <td><input type="text" name="rate"></td>
+        </tr>
+        <tr>
+            <td><input type="submit" name="submit"></td>
+        </tr>
+    </table>
+</form>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    $(function () {
+        $("input[name='rate']").on('input', function (e) {
+            $(this).val($(this).val().replace(/[^0-9]/g, ''));
+        });
+    });
+
+    function validateFile(input) {
+        const file = input.files[0];
+        const allowedExtensions = /(\.pdf|\.jpg|\.jpeg)$/i;
+        const errorMessage = document.getElementById('errorMessage');
+
+        if (!allowedExtensions.exec(input.value)) {
+            errorMessage.innerText = 'Please upload files with .pdf, .jpg, or .jpeg extension only.';
+            errorMessage.style.display = 'inline-block';
+            input.value = '';
+        } else {
+            errorMessage.style.display = 'none'; // Hide the error message
+            if (file) {
+                // Perform further checks or submit the form if validation is successful
+                document.getElementById('uploadForm').submit();
+            }
+        }
+    }
+</script>
+
+{% include 'footer.html' %}

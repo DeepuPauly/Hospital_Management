@@ -1,0 +1,181 @@
+ <!-- footer17 -->
+ <section class="footer-17">
+    <div class="footer17_sur py-5">
+      <div class="container py-lg-5 py-md-4">
+        <div class="footer17-top">
+          <div class="footer17-top-left1_sur pr-lg-4">
+            <h6>Contact Us</h6>
+            <p>Lorem ipsum dolor sit amet elit. Velit beatae ullam dolore.</p>
+            <ul>
+              <li><a href="mailto:support@Estates.com">support@Estates.com</a></li>
+              <li><a href="tel:+(21) 255 989 8088">+(21) 255 989 8088</a></li>
+            </ul>
+            <ul class="footers-17_social">
+              <li><a href="#url" class="twitter"><span class="fa fa-twitter"></span></a></li>
+              <li><a href="#url" class="facebook"><span class="fa fa-facebook"></span></a></li>
+              <li><a href="#url" class="linkedin"><span class="fa fa-linkedin"></span></a></li>
+              <li><a href="#url" class="instagram"><span class="fa fa-instagram"></span></a></li>
+            </ul>
+          </div>
+          <div class="footer17-top-left2_sur">
+            <h6>Popular Searches</h6>
+            <ul>
+              <li><a href="#features">Features</a></li>
+              <li><a href="#pricing">Offices for Rent</a></li>
+              <li><a href="blog.html">Latest News</a></li>
+              <li><a href="#help">Offices for Buy</a></li>
+              <li><a href="#support">Support</a></li>
+            </ul>
+          </div>
+          <div class="footer17-top-left3_sur">
+            <h6>Quick links</h6>
+            <ul>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="about.html#team">Join our team</a></li>
+              <li><a href="contact.html">Contact us</a></li>
+              <li><a href="#press">Press release</a></li>
+              <li><a href="#careers">Careers</a></li>
+            </ul>
+          </div>
+          <div class="footer17-top-left4_sur">
+            <h6>Subscribe To Our Newsletter</h6>
+            <p>Enter your email and receive the latest news from us.</p>
+            <div class="w3l-footer-subscribe mt-4">
+              <form action="#" class="subscribe" method="post">
+                <input type="email" name="email" placeholder="Your Email Address" required="">
+                <button><span class="fa fa-paper-plane-o pr-1"></span></button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="copyright text-center">
+        <div class="container">
+          <p class="copy-footer-29">© 2020 Estates. All rights reserved | Designed by <a href="https://w3layouts.com"
+              target="_blank">W3layouts</a></p>
+        </div>
+      </div>
+      <!-- move top -->
+      <button onclick="topFunction()" id="movetop" title="Go to top">
+        &#10548;
+      </button>
+      <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () {
+          scrollFunction()
+        };
+
+        function scrollFunction() {
+          if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+          } else {
+            document.getElementById("movetop").style.display = "none";
+          }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+          document.body.scrollTop = 0;
+          document.documentElement.scrollTop = 0;
+        }
+      </script>
+      <!-- /move top -->
+    </div>
+  </section>
+  <!-- //footer17 -->
+
+  <!-- Template JavaScript -->
+  <script src="/static/amb_assets/js/jquery-3.3.1.min.js"></script>
+
+  <script src="/static/amb_assets/js/theme-change.js"></script><!-- theme switch js (light and dark)-->
+  <!-- owlcarousel -->
+  <script src="/static/amb_assets/js/owl.carousel.js"></script>
+  <!-- script for tesimonials carousel slider -->
+  <script>
+    $(document).ready(function () {
+      $("#owl-demo1").owlCarousel({
+        loop: true,
+        nav: false,
+        margin: 50,
+        responsiveClass: true,
+        responsive: {
+          0: {
+            items: 1,
+            nav: false
+          },
+          736: {
+            items: 3,
+            nav: false
+          }
+        }
+      })
+    })
+  </script>
+  <!-- //script for tesimonials carousel slider -->
+
+  <!-- script for tesimonials agency carousel slider -->
+  <script>
+    $(document).ready(function () {
+      $("#owl-agency").owlCarousel({
+        loop: true,
+        nav: false,
+        margin: 50,
+        responsiveClass: true,
+        responsive: {
+          0: {
+            items: 1,
+            nav: false
+          },
+          736: {
+            items: 1,
+            nav: false
+          }
+        }
+      })
+    })
+  </script>
+  <!-- //script for tesimonials agency carousel slider -->
+  <!-- disable body scroll which navbar is in active -->
+  <script>
+    $(function () {
+      $('.navbar-toggler').click(function () {
+        $('body').toggleClass('noscroll');
+      })
+    });
+  </script>
+  <!-- disable body scroll which navbar is in active -->
+
+  <!--/MENU-JS-->
+  <script>
+    $(window).on("scroll", function () {
+      var scroll = $(window).scrollTop();
+
+      if (scroll >= 80) {
+        $("#site-header").addClass("nav-fixed");
+      } else {
+        $("#site-header").removeClass("nav-fixed");
+      }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function () {
+      $("header").toggleClass("active");
+    });
+    $(document).on("ready", function () {
+      if ($(window).width() > 991) {
+        $("header").removeClass("active");
+      }
+      $(window).on("resize", function () {
+        if ($(window).width() > 991) {
+          $("header").removeClass("active");
+        }
+      });
+    });
+  </script>
+  <!--//MENU-JS-->
+
+  <script src="/static/amb_assets/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,160 @@
+{% include 'pharmacy_header.html' %}
+<br>
+<br>
+<style>
+    form {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    table {
+        width: 100%;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: left;
+    }
+
+    select, textarea {
+        width: 100%;
+        padding: 8px;
+        margin: 5px 0;
+        box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+
+	 .navbar-area {
+          background-color: blue; /* Change this to your desired shade of blue */
+        }
+   .card-text {
+        margin-bottom: 5px; /* Adjust this value to reduce the spacing between details */
+    }
+
+    /* Adjust styling for h5 tag */
+    .font {
+        
+        color: #555; /* Adjust the color as needed */
+    }
+
+
+</style>
+<div class="container py-lg-5">
+    <h2 class="text-center mt-4 mb-4">Medicine</h2>
+
+    <div class="form-container">
+        {% if data['up'] %}
+        <form method="post">
+            <table>
+                <tr>
+				<th>Medicine name</th>
+				<td><input type="text" name="medicine_name" class="form-control" value="{{data['up'][0]['medicine_name']}}"></td>
+			</tr>
+			<tr>
+				<th>Description</th>
+				<td><textarea name="description" class="form-control">{{data['up'][0]['description']}}</textarea></td>
+			</tr>
+			<tr>
+				<th>Available qty</th>
+				<td><input type="text" name="available_qty" class="form-control" value="{{data['up'][0]['available_qty']}}"></td>
+			</tr>
+			<tr>
+				<th>Expiry date</th>
+				<td><input type="date" name="expiry_date" class="form-control" value="{{data['up'][0]['expiry_date']}}"></td>
+			</tr>
+			<tr>
+				<th>Rate</th>
+				<td><input type="text" name="rate" class="form-control" value="{{data['up'][0]['rate']}}"></td>
+			</tr>
+			<tr>
+				<td align="center" colspan="2"><input type="submit" name="update" value="update"></td>
+			</tr>
+            </table>
+        </form>
+        {% else %}
+        <form method="post">
+            <table>
+                <tr>
+				<th>Medicine name</th>
+				<td><input type="text" name="medicine_name" class="form-control"></td>
+			</tr>
+			<tr>
+				<th>Description</th>
+				<td><textarea name="description" class="form-control"></textarea></td>
+			</tr>
+			<tr>
+				<th>Available qty</th>
+				<td><input type="text" name="available_qty" class="form-control"></td>
+			</tr>
+			<tr>
+				<th>Expiry date</th>
+				<td><input type="date" name="expiry_date" class="form-control"></td>
+			</tr>
+			<tr>
+				<th>Rate</th>
+				<td><input type="text" name="rate" class="form-control"></td>
+			</tr>
+			<tr>
+				<td align="center" colspan="2"><input type="submit" name="submit"></td>
+			</tr>
+            </table>
+        </form>
+        {% endif %}
+    </div>
+<br><br>
+    <div class="row">
+        {% for i in data['view'] %}
+        <div class="col-md-4">
+            <div class="card shadow mb-4">
+                <div class="card-body">
+                    <h5 class="card-text"><strong>Medicine Name :</strong>  <span class="font"> {{i.medicine_name}}</span></h5>
+                    <h5 class="card-text"><strong>Description :</strong><span class="font"> {{i.description}}</span> </h5>
+                    <h5 class="card-text"><strong>Available quantity :</strong> <span class="font"> {{i.available_qty}}</span>  </h5>
+                    <h5 class="card-text"><strong>Expiry date :</strong><span class="font"> {{i.expiry_date}} </span></h5>
+                    <h5 class="card-text"><strong>Rate :</strong>  <span class="font"> {{i.rate}}</span></h5>
+                    <br>
+                    <div class="text-center">
+                        <a href="p_medicines?action=update&medicine_id={{i.medicine_id}}" class="btn btn-success">Update</a>
+                        <a href="p_medicines?action=delete&medicine_id={{i.medicine_id}}" class="btn btn-danger">Delete</a>
+                        <a href="p_updatestock?medicine_id={{i.medicine_id}}" class="btn btn-info">Update Stock</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<script src="
+https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+    </script>
+<script>
+	$(function() {
+       $("input[name='rate']").on('input', function(e) {
+        	$(this).val($(this).val().replace(/[^0-9]/g, ''));
+            
+        });
+    });
+    $(function() {
+       $("input[name='available_qty']").on('input', function(e) {
+        	$(this).val($(this).val().replace(/[^0-9]/g, ''));
+            
+        });
+    });
+    </script>
+{% include 'footer.html' %}

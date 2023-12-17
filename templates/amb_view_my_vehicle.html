@@ -1,0 +1,81 @@
+{% include 'ambulance_header.html' %}
+<br>
+<br><br>
+<br>
+
+<div class="w3l-agent-block py-5" id="why">
+    <div class="container py-lg-4">
+        <div class="col-lg-6 mt-lg-0 mt-5 pl-lg-5">
+            <div class="card">
+                <div class="card-content">
+                  <h3>Driver Name</h3>
+                  <p>{{data['view'][0]['driver_name']}}</p>
+                  <div class="details">
+                    <p><strong style="color: #333;">Ambulance Number:</strong> {{data['view'][0]['ambulance_number']}}</p>
+                    <p><strong style="color: #333;">Type:</strong> {{data['view'][0]['type']}}</p>
+                    <p><strong style="color: #333;">Capacity:</strong>{{data['view'][0]['capacity']}}</p>
+                    <p><strong style="color: #333;">Equipments:</strong> {{data['view'][0]['equipments']}}</p>
+                  </div>
+                </div>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+<style>
+/* Styles for the card */
+.card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 300px;
+  margin: 20px auto;
+  background-color: #fff;
+  transition: transform 0.3s ease-in-out; /* Adding transition effect */
+}
+
+.card:hover {
+  transform: translateY(-5px); /* Adding lift effect on hover */
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.card-content {
+  padding: 20px;
+}
+
+.card-content h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.card-content p {
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.details {
+  color: #555;
+}
+
+.details p {
+  margin: 5px 0;
+}
+
+/* Styles for the button */
+
+
+
+</style>  
+
+{% include 'amb_footer.html'%}

@@ -1,0 +1,284 @@
+{% include 'patient_header.html'%}
+      <!--====== VIDEO COUNTER PART START ======-->
+      <section id="facts" class="video-counter pt-70">
+        <br>
+        <br>          
+        <div class="main">
+            
+                <div class="bdy"> 
+                
+              <div class="main-sub row align-items-center pt-5">
+                
+                </div>
+                
+                <div class="container1">
+                    <form action="" method="post">
+                    
+                    <table id="inputTable">
+                      <thead>
+                        <tr>
+                          <th>Ambulance</th>
+                          <th>Date</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                            <td>
+                                <select id="ambulanceSelect" class="dropdown" name="amb">
+                                  {% if data['amb'] %}
+                                    {% for row in data['amb'] %}
+                                      <option value="{{ row['ambulance_id'] }}">{{ row['driver_name'] }} : {{ row['ambulance_number'] }}</option>
+                                    {% endfor %}
+                                  {% else %}
+                                    <option disabled selected>No Ambulances Available Now</option>
+                                  {% endif %}
+                                </select>
+                              </td>
+                              
+                          <td><input type="date" id="dateInput" class="date-field" min="" name="date" required></td>
+                          {% if data['amb'] %}
+                          <td><button type="submit" name="submit">Submit</button></td>
+                          {% else %}
+                          <td><button type="submit" name="submit" disabled>Submit</button></td>
+                          {% endif %}
+                        </tr>
+                      </tbody>
+                    </table>
+                </form>
+                <br>
+                <br>
+                <br>
+                <br>
+
+
+
+                <table id="inputTable">
+                  <thead>
+                    <tr>
+                      <th>Request ID</th>
+                      <th>Date</th>
+                      <th>Time</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for i in data['view']%}
+                    <tr>
+                        <td>{{loop.index}}</td>
+                        <td>{{i['date']}}</td>
+                        <td>{{i['time']}}</td>
+                        {% if i['status']=='accept'%}
+                        <td style="color: green;">{{i['status']}}</td>
+                        {% elif i[status]=='reject'%}
+                        <td style="color: red;">{{i['status']}}</td>
+                        {%else%}
+                        <td style="color: rgb(125, 125, 10);">{{i['status']}}</td>
+                        {%endif%}
+                    </tr>
+                    {%endfor%}
+                  </tbody>
+                </table>
+                  </div>
+                
+            </div>
+          </div>
+        </div>
+        <!-- container -->
+      </section>
+      <!--====== VIDEO COUNTER PART ENDS ======-->
+
+      <style>
+      /* General styling */
+.bdy {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container1 {
+  width: 80%;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+
+/* Table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  transition: opacity 0.3s ease;
+}
+
+/* Fade in effect for the table on hover */
+.container1:hover table {
+  opacity: 0.9;
+}
+
+table th,
+table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+}
+
+table th {
+  background-color: #f2f2f2;
+}
+
+/* Form field styling */
+select,
+input[type="date"],
+input[type="time"],
+button {
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: calc(100% - 2px);
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  transition: transform 0.2s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* Hover effects for form fields */
+select:hover,
+input[type="date"]:hover,
+input[type="time"]:hover,
+button:hover {
+  transform: translateY(-2px); /* Move up on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow on hover */
+}
+
+/* Button styling */
+button {
+  background-color: rgb(52, 71, 219);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 100%;
+}
+
+button:hover {
+  background-color: #2980b9;
+  transform: scale(1.05); /* Scaling effect on hover */
+}
+
+/* Responsive styling */
+@media screen and (max-width: 768px) {
+  .container1 {
+    width: 90%;
+  }
+}
+
+        
+        </style>
+        
+        
+        <script>
+        // Set minimum date to today
+        const today = new Date();
+        const todayFormatted = today.toISOString().split('T')[0];
+        document.getElementById('dateInput').min = todayFormatted;
+        
+        // Set minimum time to the current time
+        const now = new Date();
+        const hours = now.getHours().toString().padStart(2, '0');
+        const minutes = now.getMinutes().toString().padStart(2, '0');
+        const currentTime = `${hours}:${minutes}`;
+        document.getElementById('timeInput').min = currentTime;
+        
+        // Update time options based on the selected date
+        document.getElementById('dateInput').addEventListener('change', updateAvailableTimes);
+        
+        function updateAvailableTimes() {
+          const selectedDate = document.getElementById('dateInput').value;
+          const currentDateTime = new Date();
+        
+          const timeInput = document.getElementById('timeInput');
+          timeInput.innerHTML = ''; // Clear existing options
+        
+          let hours = 0;
+          let minutes = 0;
+        
+          if (selectedDate === todayFormatted) {
+            hours = currentDateTime.getHours();
+            minutes = currentDateTime.getMinutes();
+          }
+        
+          while (hours < 24) {
+            if ((selectedDate !== todayFormatted) || (hours > currentDateTime.getHours()) || (hours === currentDateTime.getHours() && minutes >= currentDateTime.getMinutes())) {
+              const option = document.createElement('option');
+              const timeString = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+              option.text = timeString;
+              option.value = timeString;
+              timeInput.add(option);
+            }
+        
+            if (minutes === 45) {
+              hours++;
+              minutes = 0;
+            } else {
+              minutes += 15;
+            }
+          }
+        }
+        
+        // Prevent users from manually entering past times in the time input field
+        document.getElementById('timeInput').addEventListener('input', function() {
+          const selectedDate = document.getElementById('dateInput').value;
+          const currentDateTime = new Date();
+        
+          const selectedTime = this.value.split(':');
+          const inputDateTime = new Date(`${selectedDate}T${this.value}`);
+        
+          if ((selectedDate === todayFormatted && inputDateTime <= currentDateTime) || selectedDate !== todayFormatted) {
+            const hours = currentDateTime.getHours().toString().padStart(2, '0');
+            const minutes = currentDateTime.getMinutes().toString().padStart(2, '0');
+            this.value = `${hours}:${minutes}`;
+          }
+        });
+        
+        function submitData() {
+          const ambulance = document.getElementById('ambulanceSelect').value;
+          const date = document.getElementById('dateInput').value;
+          const time = document.getElementById('timeInput').value;
+        
+          const submittedDate = new Date(`${date}T${time}`);
+          const currentDateTime = new Date();
+        
+          if (submittedDate < currentDateTime) {
+            console.log('Please select a future date and time.');
+            return;
+          }
+        
+          const submittedData = {
+            ambulance: ambulance,
+            date: date,
+            time: time
+          };
+        
+          console.log('Submitted Data:', submittedData);
+          // You can send this data to a server, perform operations, etc.
+        }
+        
+        
+        </script>
+  
+
+      {% include 'pat_footer.html'%}
+
+  
+
+
+
+

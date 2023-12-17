@@ -1,0 +1,237 @@
+{% include 'reception_header.html' %}
+<br>
+<br>
+<br>
+
+
+
+
+<style>
+
+
+.table-container {
+        text-align: center;
+        overflow-x: auto; /* Enable horizontal scrolling */
+        max-width: 100%; /* Make table responsive */
+    }
+
+    /* Style form elements */
+    form table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px; /* Add margin at the top */
+    }
+
+    form table th {
+        text-align: left;
+        padding: 10px;
+        font-weight: bold;
+    }
+
+    form table td {
+        padding: 10px;
+    }
+
+    form table input[type='text'],
+    form table input[type='date'],
+    form table input[type='submit'] {
+        width: calc(100% - 20px); /* Adjust input width */
+        padding: 8px;
+        margin-bottom: 10px; /* Add margin between inputs */
+        border-radius: 5px;
+        border: 1px solid #ccc; /* Add border */
+    }
+
+    form table input[type='submit'] {
+        width: 100%; /* Full width for submit button */
+        margin-top: 15px; /* Add margin at the top of the button */
+        background-color: #4CAF50; /* Green background */
+        color: white;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+    }
+
+    form table input[type='submit']:hover {
+        background-color: #45a049; /* Darker green on hover */
+    } 
+
+</style>
+
+<br>
+<div class="container py-lg-5">
+    
+<h1><b>ADD INPATIENT DETAILS</b></h1>
+<br><br>
+
+<br><br>
+
+
+{% if data['updates'] %}
+<form method="POST">
+    <table align="center" border="1">
+        <tr>
+            <th>patient</th>
+            <td><input type="text" name="patient" class="form-control" value="{{data['updates'][0]['first_name']}}" readonly></td>
+        </tr>
+        <tr>
+            <th>ADMISSION DATE</th>
+            <td><input type="date" name="date1" id="addate" class="form-control" value="{{data['updates'][0]['admission_date']}}" readonly></td>
+        </tr>
+        <tr>
+            <th>PURPOSE</th>
+            <td><input type="text" name="purpose" class="form-control" value="{{data['updates'][0]['purpose']}}" required></td>
+        </tr>
+        <tr>
+            <th>ADMITTING RELATIVE</th>
+            <td><input type="text" name="relative" class="form-control" value="{{data['updates'][0]['admitting_relative']}}" required></td>
+        </tr>
+        <tr>
+            <th>CONTACT</th>
+            <td><input type="text" name="contact" maxlength="10" class="form-control" value="{{data['updates'][0]['contact']}}" required></td>
+        </tr>
+        <tr>
+            <th>Status</th>
+            <td>
+        <input type="radio" name="status" value="admitted" checked style="margin-right: 10px;">Admitted
+        <input type="radio" name="status" value="discharged" style="margin-left: 20px;">Discharged
+    </td>
+        </tr>  
+        <!-- <tr>
+            <th>DISCHARGE DATE</th>
+            <td><input type="date" name="date2" id="date2" class="form-control">
+            </td>
+        </tr> -->
+        <tr>
+            <td align="center" colspan="2"><input type="submit" name="update" value="UPDATE"></td>
+        </tr>
+    </table>
+</form>
+{% else %}
+
+<form method="POST">
+    <table align="center" border="1">
+        <tr>
+            <th>PATIENT NAME</th>
+            {% if data['patients'] %}
+            <td><input type="text" name="patient" value="{{data['patients'][0]['first_name']}}" readonly></td>
+            {% endif %}
+        </tr>
+        <tr>
+            <th>PURPOSE</th>
+            <td><input type="text" class="form-control" name="purpose"></td>
+        </tr>
+        <tr>
+            <th>ADMITTING RELATIVE</th>
+            <td><input type="text" class="form-control" name="relative"></td>
+        </tr>
+        <tr>
+            <th>CONTACT</th>
+            <td><input type="text" maxlength="10" class="form-control" name="contact"></td>
+        </tr>
+        <tr>
+            <td align="center" colspan="2"><input type="submit" name="submit"></td>
+        </tr>
+    </table>
+</form>
+{% endif %}
+</div>
+<!-- <script>
+   document.addEventListener('DOMContentLoaded', function() {
+    const today = new Date();
+    const formattedDate = today.toISOString().split('T')[0];
+    const dateInput = document.getElementById('mydate');
+    
+    dateInput.min = formattedDate; // Set minimum date
+    dateInput.value = formattedDate; // Set default value to today's date
+});
+
+
+ </script> -->
+
+
+
+<script src="
+https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+    </script>
+<script>
+    $(function() {
+        $("input[name='patient']").on('input', function(e) {
+            $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+
+        });
+        $("input[name='purpose']").on('input', function(e) {
+            $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+
+        });
+		$("input[name='relative']").on('input', function(e) {
+            $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+
+        });
+		$("input[name='blood']").on('input', function(e) {
+            $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+
+        });
+		$("input[name='username']").on('input', function(e) {
+            $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+
+        });
+		// $("input[name='date']").on('input', function(e) {
+        //     $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+
+        // });
+        $("input[name='dob']").on('input', function(e) {
+            $(this).val($(this).val().replace(/[^0-9/]/g, ''));
+
+        });
+        
+        $("input[name='contact']").on('input', function(e) {
+        	$(this).val($(this).val().replace(/[^0-9]/g, ''));
+            
+        });
+        $("input[name='pin']").on('input', function(e) {
+        	$(this).val($(this).val().replace(/[^0-9]/g, ''));
+            
+        });
+        $("input[name='email']").on('input', function(e) {
+              var re = /([A-Z0-9a-z_-][^@])+?@[^$#<>?]+?\.[\w]{1,}/.test(this.value);
+                if(!re) {
+                    $('#eerror').show();
+                } else {
+                    $('#eerror').hide();
+                }
+
+        });
+        $("input[name='address']").on('input', function(e) {
+            $(this).val($(this).val().replace(/[^A-Za-z0-9()/. ]/g, ''));
+
+        });
+        $("input[name='place']").on('input', function(e) {
+            $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+
+        });
+            
+        $("input[name='password']").on('input', function(e) {
+        	$(this).val($(this).val().replace(/[^0-9A-Za-z@/. ]/g, ''));
+            
+        });
+    });
+
+
+
+   var check = function() {
+  if (document.getElementById('password').value ==
+    document.getElementById('confirm_password').value) {
+    document.getElementById('message').style.color = 'green';
+    document.getElementById('message').innerHTML = 'matching';
+  } else {
+    document.getElementById('message').style.color = 'red';
+    document.getElementById('message').innerHTML = 'not matching';
+  }
+}
+</script>
+
+
+{% include 'reception_footer.html' %}

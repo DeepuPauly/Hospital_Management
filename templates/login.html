@@ -1,0 +1,78 @@
+{% include 'public_header.html'%}
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<center>
+    <div class="login-container">
+        <img src="/static/amb_assets/images/log.png" alt="User Image" class="rounded-image">
+        <form class="login-form" method="post">
+            <input type="text" placeholder="Username" name="uname" required>
+            <input type="password" placeholder="Password" name="psw" required>
+            <button type="submit" name="submit">Login</button>
+        </form>
+        <br>
+          <a href="/forgotpassword" class="forgot-password-link" style="color: black;">Forgot Password</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+        <!-- User Registration Link -->
+        <a href="/patient_reg" style="color: black;">New User..? Register Here</a>
+    </div>
+</center>
+
+<style>
+    .login-container {
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        max-width: 400px;
+        padding: 20px;
+    }
+
+    .login-container h2 {
+        margin-bottom: 20px;
+    }
+
+    .login-form input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .login-form button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+
+    .login-form button:hover {
+        background-color: #0056b3;
+    }
+
+    .forgot-password-link {
+        margin-top: 10px;
+    }
+
+    .rounded-image {
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+    }
+</style>
+
+{% include 'public_footer.html'%}

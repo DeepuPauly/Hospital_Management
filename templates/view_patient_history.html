@@ -1,0 +1,102 @@
+{% include 'specialist_header.html' %}
+<br>
+<br>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost&family=Lato:wght@700&family=Mulish&family=Ysabeau+Office:wght@200&display=swap" rel="stylesheet">
+<!-- font-family: 'Jost', sans-serif;
+font-family: 'Mulish', sans-serif;
+font-family: 'Ysabeau Office', sans-serif; -->
+
+<style>
+    
+    .table-container {
+      margin: 29px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border: 1px solid #cbcdd2;
+      padding: 8px;
+      text-align: left;
+    
+    }
+
+    th {
+      background-color: #0850ec;
+      color: white;
+    }
+
+    tr:hover {
+      background-color: rgb(212, 213, 234);
+    }
+
+    
+    .patfont {
+        font-family: 'Lato', sans-serif;
+        font-weight: 600;
+        font-size: 40px;
+        color:black;
+        text-shadow: 2px 2px 6px rgba(45, 79, 233, 0.5);
+    }
+    .link-container {
+        display: flex; /* Use flexbox for layout */
+      justify-content: center; /* Center the links horizontally */
+      align-items: center; /* Center the links vertically */
+      
+    }
+    .link {
+      padding: 10px 20px;
+      font-size: 16px;
+      text-decoration: none;
+      display: inline-block;
+      color: #0366d6; /* Blue color for links */
+    }
+    .button{
+      padding: 10px 20px;
+      font-size: 16px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      cursor: pointer;
+      /* background-color: #4CAF50;  */
+      color: white;
+      /* border: 1px solid #161716; */
+      border-radius: 10px;
+      transition: background-color 0.3s;
+    } 
+    .button:hover{
+        background: white;
+        color: #0366d6;
+    }
+    
+</style>
+
+    <h1 class="mx-4 mt-5 patfont">Patient History</h1>
+    <div class="table-container">
+    <table border="1px" class="">
+        <tr>
+            <th>SL no</th>
+            <th>Description</th>
+            <th>Date time</th>
+        </tr>
+        {% for i in data['view']%}
+        <tr>
+            <td>{{loop.index}}</td>
+            <td>{{ i['description']}}</td>
+            <td>{{ i['date_time']}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    </div>  
+    <br>
+    <div class="link-container">
+      <a class="btn btn-primary p-3 button me-2 " href="view_consultant_patient">Add Disease Details</a>
+      <a class="btn btn-primary p-3 button ms-2" href="add_prescription">Add Prescription</a>
+   </div>
+
+{% include 'specialist_footer.html' %}

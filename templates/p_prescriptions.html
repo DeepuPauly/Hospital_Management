@@ -1,0 +1,33 @@
+{% include 'pharmacy_header.html' %}
+<style type="text/css">
+    .navbar-area {
+        background-color: blue; /* Change this to your desired shade of blue */
+    }
+</style>
+<br>
+<br>
+<div class="container py-lg-5">
+	<h2 class="text-center mt-4 mb-4">Prescription Details</h2>
+	<div class="table-responsive">
+    <table class="table table-dark table-hover">
+        <tr>
+            <th>Medicine Name</th>
+            <th>Description</th>
+            <th>Bill Status</th>
+            <th>Payment Status</th>
+        </tr>
+        {% for i in data['view'] %}
+        <tr>
+            <td>{{i.medicine_name}}</td>
+            <td>{{i.des}}</td> 
+            {% if i.status=='pending' %}
+            <td><a href="?prescription_id={{i.prescription_id}}" class="btn btn-success">Forward to Patient</a></td>
+            {% else %}
+            <td>Forwarded Bill</td>
+            {% endif %}
+            <td><a href="p_payments?prescription_id={{i.prescription_id}}" class="btn btn-info">View Payment Status</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% include 'footer.html' %}

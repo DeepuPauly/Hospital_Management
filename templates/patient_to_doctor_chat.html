@@ -1,0 +1,361 @@
+
+
+
+
+<a href="/view_my_bookings" id="super" class="button-link">Go Back</a>
+
+  
+ 
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container" id="maind" >
+    <div class="col-md-12 col-lg-6" >
+        <div class="panel">
+            <!--Heading-->
+            <div class="panel-heading">
+                <div class="panel-control">
+                      
+                </div>
+                <h3 class="panel-title">Chat</h3>
+            </div>
+    
+            <!--Widget body-->
+            <div id="demo-chat-body" class="collapse in">
+                <div class="nano has-scrollbar" style="height:380px">
+                    <div class="nano-content pad-all" tabindex="0" style="right: -17px;">
+                        <ul id="scroll" class="list-unstyled media-block">
+                            
+      
+                            {% for row in data['view'] %}
+                            {% if row['sender_id'] == data['d_id']  %}
+
+                            <li class="mar-btm" align="right" >
+                              <div class="media-right">
+                                  <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="img-circle img-sm" alt="Profile Picture">
+                              </div>
+                              <div class="media-body pad-hor speech-right">
+                                  <div class="speech">
+                                      <!-- <a href="#" class="media-heading">John Doe</a> -->
+                                      <p >{{ row['messages']  }}</p>
+                                      <p class="speech-time">
+                                      <!-- <i class="fa fa-clock-o fa-fw"></i>09:23AM -->
+                                      </p>
+                                  </div>
+                              </div>
+                          </li>
+
+                       
+                      {% else %}
+                      <li class="mar-btm" align="left">
+                          <div class="media-left">
+                              <img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="img-circle img-sm" alt="Profile Picture">
+                          </div>
+                          <div class="media-body pad-hor speech-left">
+                              <div class="speech">
+                                  <!-- <a href="#" class="media-heading">Lucy Doe</a> -->
+                                  <p>{{ row['messages']  }}</p>
+                                  <p class="speech-time">
+                                      <!-- <i class="fa fa-clock-o fa-fw"></i> 09:23AM -->
+                                  </p>
+                              </div>
+                          </div>
+                      </li>
+           
+                            {% endif %}
+                            {% endfor %}
+                            
+                        </ul>
+                    </div>
+                <div class="nano-pane"><div class="nano-slider" id="div1" style="height: 141px; transform: translate(0px, 0px);" align="center"></div></div></div>
+    
+                <!--Widget footer-->
+                <div class="panel-footer">
+                    <div class="row">
+                        <form action="" method="post">
+                        <div id="div1" class="col-xs-9">
+                            <input type="text" name="msg" placeholder="Enter your text" class="form-control chat-input">
+                        </div>
+                        <div  id="div2" class="col-xs-3">
+                            <input type="submit" value="sent" class="btn btn-primary btn-block" name="submit" id="">
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+    function scrollDown() {
+        // console.log("sabdhjjbs");
+        // alert("test")
+ document.getElementById('scroll').scrollTop =  document.getElementById('scroll').scrollHeight
+}
+</script>
+
+<style>
+    form{
+        width: 100%;
+        display: flex;
+    }
+
+    form #div1{
+        width: 80%;
+    }
+    form #div2{
+        width: 20%;
+    }
+
+    form #div1 input{
+        width: 100%;
+    }
+
+    form #div2 input{
+        width: 100%;
+    }
+
+    #maind ul{
+ height: 100%;
+ width: 90%;
+
+ overflow-y: scroll;
+
+}
+
+#maind ul::-webkit-scrollbar{
+    display: none;
+}
+
+    #maind{
+        box-shadow: 2px 4px 6px 6px  lightgrey;
+        /* margin-right: 200px; */
+        width: 500px;
+        bottom: 200px;
+        margin-left: 500px;
+        
+    }
+
+    li{
+        list-style: none;
+    }
+  body{
+  margin-top:100px;
+  background-image: url('/static/chat.svg');
+  
+ 
+  background-size: cover;
+  /* overflow: hidden; */
+ 
+}
+
+#super{
+    margin-left: 700px;
+}
+
+
+body::before{
+  content: "";
+  background-color: rgba(0,0,0,0.1);
+  width: 100%;
+  height: 100vh;
+}
+
+.button-link {
+  display: inline-block;
+  padding: 8px 16px; /* Adjust padding as needed */
+  text-decoration: none;
+  color: #ffffff; /* Text color */
+  background-color: #007bff; /* Button background color */
+  border: 1px solid #007bff; /* Button border color */
+  border-radius: 4px; /* Button border radius */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition effect */
+
+  /* Center align text */
+  text-align: center;
+  line-height: 1;
+}
+
+.button-link:hover {
+  background-color: #0056b3; /* Change color on hover */
+  border-color: #0056b3; /* Change border color on hover */
+  color: #ffffff; /* Change text color on hover */
+}
+
+
+
+.panel {
+  box-shadow: 0 2px 0 rgba(0,0,0,0.075);
+  border-radius: 0;
+  border: 0;
+  margin-bottom: 24px;
+}
+.panel .panel-heading, .panel>:first-child {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.panel-heading {
+  position: relative;
+  height: 50px;
+  padding: 0;
+  border-bottom:1px solid #eee;
+}
+.panel-control {
+  height: 100%;
+  position: relative;
+  float: right;
+  padding: 0 15px;
+}
+.panel-title {
+  font-weight: normal;
+  padding: 0 20px 0 20px;
+  font-size: 1.416em;
+  line-height: 50px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.panel-control>.btn:last-child, .panel-control>.btn-group:last-child>.btn:first-child {
+  border-bottom-right-radius: 0;
+}
+.panel-control .btn, .panel-control .dropdown-toggle.btn {
+  border: 0;
+}
+.nano {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.nano>.nano-content {
+  position: absolute;
+  overflow: scroll;
+  overflow-x: hidden;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.pad-all {
+  padding: 15px;
+}
+.mar-btm {
+  margin-bottom: 15px;
+}
+.media-block .media-left {
+  display: block;
+  float: left;
+}
+.img-sm {
+  width: 46px;
+  height: 46px;
+}
+.media-block .media-body {
+  display: block;
+  overflow: hidden;
+  width: auto;
+}
+.pad-hor {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.speech {
+  position: relative;
+  background: #b7dcfe;
+  color: #317787;
+  display: inline-block;
+  border-radius: 0;
+  padding: 12px 20px;
+}
+.speech:before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: 0;
+  top: 0;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-right: 7px solid #b7dcfe;
+  margin: 15px 0 0 -6px;
+}
+.speech-right>.speech:before {
+  left: auto;
+  right: 0;
+  border-top: 7px solid transparent;
+border-bottom: 7px solid transparent;
+  border-left: 7px solid #ffdc91;
+  border-right: 0;
+  margin: 15px -6px 0 0;
+}
+.speech .media-heading {
+  font-size: 1.2em;
+  color: #317787;
+  display: block;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  font-weight: 300;
+}
+.speech-time {
+  margin-top: 20px;
+  margin-bottom: 0;
+  font-size: .8em;
+  font-weight: 300;
+}
+.media-block .media-right {
+  float: right;
+}
+.speech-right {
+  text-align: right;
+}
+.pad-hor {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.speech-right>.speech {
+  background: #ffda87;
+  color: #a07617;
+  text-align: right;
+}
+.speech-right>.speech .media-heading {
+  color: #a07617;
+}
+.btn-primary, .btn-primary:focus, .btn-hover-primary:hover, .btn-hover-primary:active, .btn-hover-primary.active, .btn.btn-active-primary:active, .btn.btn-active-primary.active, .dropdown.open>.btn.btn-active-primary, .btn-group.open .dropdown-toggle.btn.btn-active-primary {
+  background-color: #579ddb;
+  border-color: #5fa2dd;
+  color: #fff !important;
+}
+.btn {
+  cursor: pointer;
+  /* background-color: transparent; */
+  color: inherit;
+  padding: 6px 12px;
+  border-radius: 0;
+  border: 1px solid 0;
+  font-size: 18px;
+  line-height: 1.42857;
+  vertical-align: middle;
+  -webkit-transition: all .25s;
+  transition: all .25s;
+}
+.form-control {
+  font-size: 20px;
+  height: 100%;
+  border-radius: 0;
+  box-shadow: none;
+  border: 1px solid #e9e9e9;
+  transition-duration: .5s;
+}
+.nano>.nano-pane {
+  background-color: rgba(0,0,0,0.1);
+  position: absolute;
+  width: 5px;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  opacity: 0;
+  -webkit-transition: all .7s;
+  transition: all .7s;
+}
+</style>

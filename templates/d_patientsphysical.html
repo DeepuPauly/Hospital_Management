@@ -1,0 +1,56 @@
+{% include 'doctor_header.html' %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<style type="text/css">
+    .navbar-area {
+        background-color: blue; /* Change this to your desired shade of blue */
+    }
+
+    .new {
+        font-family: serif; /* Replace 'YourNewFont' with the desired font */
+        color: black;
+        text-align: center;
+        font-size: 3em;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-shadow: 2px 2px 4px rgba(1, 3, 7, 0.2);
+        display: inline-block;
+        padding: 10px;
+    }
+
+    .small-width {
+        max-width: 400px; /* Adjust the width as needed */
+        margin: 0 auto;
+    }
+</style>
+
+<div class="container mt-4">
+    <center>
+        <h1 class="new">Patient Physical Condition</h1>
+    </center>
+
+    <div class="card-deck small-width">
+        {% for i in data['view'] %}
+        <div class="card shadow">
+            <div class="card-body">
+                <h5 class="card-text"><strong>Blood Pressure:</strong> {{ i.blood_pressure }}</h5>
+                <h5 class="card-text"><strong>Sugar:</strong> {{ i.sugar }}</h5>
+                <h5 class="card-text"><strong>Cholesterol:</strong> {{ i.cholesterol }}</h5>
+                <h5 class="card-text"><strong>Height:</strong> {{ i.height }}</h5>
+                <h5 class="card-text"><strong>Weight:</strong> {{ i.weight }}</h5>
+                <h5 class="card-text"><strong>Date:</strong> {{ i.date_time }}</h5>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+{% include 'footer.html' %}

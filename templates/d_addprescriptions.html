@@ -1,0 +1,102 @@
+{% include 'doctor_header.html' %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<style>
+    form {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    table {
+        width: 100%;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: left;
+    }
+
+    select, textarea {
+        width: 100%;
+        padding: 8px;
+        margin: 5px 0;
+        box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+
+	 .navbar-area {
+          background-color: blue; /* Change this to your desired shade of blue */
+        }
+        .new {
+    font-family: serif; /* Replace 'YourNewFont' with the desired font */
+    color: black;
+    text-align: center;
+    font-size: 3em;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(1, 3, 7, 0.2);
+    display: inline-block;
+    padding: 10px;
+}
+
+
+</style>
+<center>
+	<h1 class="new">add prescription</h1>
+</center>
+<form method="post" id="assignmentForm">
+    <table>
+        <tr>
+            <th>Medicine Name</th>
+            <td>
+                <select name="medicine_id" id="staffSelect">
+                    <option value="" disabled selected hidden>--SELECT MEDICINE--</option>
+                    {% for i in data['view'] %}
+                    <option value="{{i.medicine_id}}">{{i.medicine_name}}</option>
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td><textarea name="description" rows="4"></textarea></td>
+        </tr>
+        <tr>
+            <td align="center" colspan="2"><input type="submit" name="submit"></td>
+        </tr>
+    </table>
+</form>
+<script>
+    document.getElementById('assignmentForm').onsubmit = function() {
+        var staffSelect = document.getElementById('staffSelect');
+
+        if (staffSelect.value === '') {
+            alert('Please select medicine');
+            return false; // Prevent form submission
+        }
+
+        return true; // Submit the form
+    };
+</script>
+{% include 'footer.html' %}

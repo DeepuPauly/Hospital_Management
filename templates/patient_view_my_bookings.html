@@ -1,0 +1,326 @@
+{% include 'patient_header.html'%}
+      <!--====== VIDEO COUNTER PART START ======-->
+      <section id="facts" class="video-counter pt-70">
+        <br>
+        <br>
+      
+            
+        <div class="main">
+            <div class="container">
+              <div class="main-sub row align-items-center pt-5">
+                </div>
+                <div class="table-container mt-5">
+                  <div class="mb-2">
+                    <h2 class="">My Bookings</h2>
+                    <small class="text-secondary"
+                      >View all of your bookings here.</small
+                    >
+                  </div>
+                  <table id="mytable" class="table align-middle mb-0 bg-white">
+                    <thead class="bg-light">
+                      <tr class="header-row">
+                        <th>ID #</th>
+                        <th>Task Name</th>
+                        <th>Status</th>
+                        <th>Doctor</th>
+                        <th>Fee Amount</th>
+                        <th>Due</th>
+                        <th></th>
+                        
+                      </tr>
+                    </thead>
+                    {% for row in data['view']%}
+                    <tbody>
+                      <tr>
+                        <td>
+                          <div class="d-flex align-items-center">
+                            <div class="">
+                              <p class="fw-bold mb-1">{{loop.index}}</p>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <p class="fw-bold fw-normal mb-1">Booking</p>
+                        </td>
+                        <td>
+                          <span class="badge badge-success rounded-pill d-inline"
+                          data-date="{{ row['date'] }}">In Progress</span
+                          >
+                        </td>
+                        <td>
+                          <span
+                            ><a
+                              class="btn avatar-button rounded-circle overflow-hidden p-0 m-0 d-inline-flex"
+                              ><span
+                                data-v-0a07f886=""
+                                class="avatar-span border-0 d-inline-flex align-items-center justify-content-center text-white text-uppercase text-nowrap font-weight-normal"
+                              ></span
+                            ></a>
+                            <!----></span
+                          >{{row['first_name']}} {{row['last_name']}}
+                        </td>
+                        <td>{{row['fee_amount']}}</td>
+                        <td>
+                          <div class="">
+                            <span class="">{{row['date']}}</span>
+                            </p>
+                          </div>
+                        </td>
+                        {% if row['status']=='ACCEPTED'%}
+                        <td>
+                          <a
+                            href="make_payment?id={{row['booking_id']}}&type={{type}}&amt={{row['fee_amount']}}"
+                            class="btn btn-link btn-sm btn-rounded text-primary"
+                          >
+                            <i
+                              class="fab fa-cc-visa"
+                            ></i>
+                            Make Payment
+                        </a>
+                        </td>
+                    {% elif row['status'] == 'paid' %}
+                        <td>
+                            <a href="view_prescription?id={{ row['booking_id'] }}" class="btn btn-link btn-sm btn-rounded text-success">
+                                <i class="fas fa-file-prescription"></i>
+                                View Prescription
+                            </a>
+                            
+                            &nbsp;
+                            
+                          </a>
+                        </td>
+                        <td>
+                          <a href="view_test_prescription?id={{ row['booking_id'] }}" class="btn btn-link btn-sm btn-rounded text-info">
+                            <i class="fas fa-vial"></i>
+                            Test Prescription
+                        </a>
+                        </td>
+                        <td>
+                          <a href="patient_to_doctor_chat?id={{row['login_id']}}" class="btn btn-link btn-sm btn-rounded text-warning">
+                            <i class="fas fa-comment-alt"></i>
+                            Chat
+                        </a>
+                        </td>
+                        <td>
+                          <a href="view_invoice?id={{row['booking_id']}}" class="btn btn-link btn-sm btn-rounded text-primary">
+                            <i class="fas fa-file-invoice-dollar"></i>
+                            Invoice
+                        </td>
+                        <td>
+                          <a href="patient_view_medical_history?bid={{ row['booking_id'] }}" class="btn btn-link btn-sm btn-rounded text-success">
+                              <i class="fas fa-file-prescription"></i>
+                              Medical History
+                          </a>
+                          
+                          &nbsp;
+                          
+                        </a>
+                      </td>
+                        {%endif%}
+                      </tr>
+                      
+                    </tbody>
+                    {%endfor%}
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        <!-- container -->
+      </section>
+      <!--====== VIDEO COUNTER PART ENDS ======-->
+
+<style>
+    :root{
+    --text-color:rgba(34,42,66,.7);
+    --success-text:#0d6832;
+    --primary-text:#273e63;
+    --warning-text:#73510d;
+    --danger-text: #A61001;
+    --success-bg:#d6f0e0;
+    --primary-bg:#dfe7f6;
+    --warning-bg:#fbf0da;
+    --danger-bg: #FFEBE9;
+    --primary-btn-text:#3b71ca;
+}
+
+*{
+    /* color:var(--text-color); */
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+
+.text-primary{
+    color:var(--primary-btn-text) !important;
+}
+
+.fw-bold{
+    font-weight: 500 !important;
+}
+
+h2{
+    font-weight: 400;
+    margin-bottom: unset;
+    
+}
+
+.action-icon{
+    font-size: 1.08rem;
+}
+
+/* //Badge color overwirte */
+
+
+
+.badge-success{
+    color:var(--success-text) !important;
+    background-color:var(--success-bg);
+    border: 1px solid;
+}
+
+.badge-primary{
+    color:var(--primary-text) !important;;
+    background-color:var(--primary-bg);
+    border: 1px solid;
+}
+
+.badge-warning{
+    color:var(--warning-text) !important;;
+    background-color:var(--warning-bg);
+    border: 1px solid;
+}
+
+.badge-danger{
+    color:var(--danger-text) !important;;
+    background-color: var(--danger-bg);
+    border: 1px solid;
+}
+
+.time{
+  font-size:.75rem;
+}
+
+
+/* //Badge color overwirte end */
+
+
+/* table styling */
+
+/* primary table container  */
+.table-container{
+    box-shadow: 0px 1px 2px 0px rgb(60 64 67 / 25%), 0px 2px 6px 2px rgb(60 64 67 / 10%);
+    padding:1rem;
+    border-radius: 12px;
+    background-color: white;
+}
+
+
+th{
+    padding:1rem .5rem !important;   
+   font-size: .875rem;
+    margin-bottom: 1rem !important;
+    background-color: white !important;
+    color:var(--text-color) !important;
+    font-weight: 600 !important;
+}
+
+th:last-child  {
+   border-top-right-radius: 12px;
+}
+
+ th:first-child  {
+   border-top-left-radius: 12px;
+}
+
+/* //Removes border from last table row */
+
+ tr td:last-child{
+    text-align: right;
+ }
+
+
+/* Changing TH bottom border color*/
+.table>:not(:last-child)>:last-child>* {
+     border-bottom-color: rgba(128, 128, 128, 0.277) !important;
+    
+}
+
+ul{
+    margin-bottom: 0rem !important;
+}
+
+.avatar-span{
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 20px;
+  object-fit: fill;
+  background-image: url("https://st4.depositphotos.com/14903220/22197/v/450/depositphotos_221970610-stock-illustration-abstract-sign-avatar-icon-profile.jpg");
+}
+
+/* table styling end*/
+
+/*  button styling */
+.btn-link{
+    font-weight: 500;
+    color:var(--primary-text);
+    /* border:1px solid #2c58a094 !important; */
+    border-radius: 8px;
+    text-decoration: underline 0.1em rgb(255, 255, 255) !important;
+    text-underline-offset: 0.2em !important;
+    transition: text-decoration-color 300ms, text-underline-offset 300ms !important;
+}
+
+.btn-link:hover{
+  text-decoration-color:#0d6efd !important;
+  text-underline-offset: 0.4em !important; 
+}
+
+.logout-btn{
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.page-link{
+    border: unset !important;
+    color:var(--primary-btn-text)
+}
+</style>
+  
+  <script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+  crossorigin="anonymous"
+></script>
+    
+
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        const badges = document.querySelectorAll('.badge-success');
+        const currentDate = new Date().toISOString().slice(0, 10);
+
+        badges.forEach(badge => {
+            const badgeDate = badge.getAttribute('data-date');
+
+            if (badgeDate === currentDate) {
+                badge.textContent = 'In Progress';
+                badge.classList.add('badge-success');
+                badge.classList.remove('badge-danger');
+            } else {
+                badge.textContent = 'Expired';
+                badge.classList.add('badge-danger');
+                badge.classList.remove('badge-success');
+            }
+        });
+    });
+</script>
+
+  
+
+      {% include 'pat_footer.html'%}
+

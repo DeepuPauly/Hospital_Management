@@ -1,0 +1,135 @@
+{% include 'lab_header.html' %}
+<br>
+<br>
+<style>
+    form {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    table {
+        width: 100%;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: left;
+    }
+
+    select, textarea {
+        width: 100%;
+        padding: 8px;
+        margin: 5px 0;
+        box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+
+	 .navbar-area {
+          background-color: blue; /* Change this to your desired shade of blue */
+        }
+   .card-text {
+        margin-bottom: 5px; /* Adjust this value to reduce the spacing between details */
+    }
+
+    /* Adjust styling for h5 tag */
+    .font {
+        
+        color: #555; /* Adjust the color as needed */
+    }
+
+
+</style>
+<div class="container py-lg-5">
+    <h2 class="text-center mt-4 mb-4"> Manage Test</h2>
+
+    <div class="form-container">
+        {% if data['up'] %}
+        <form method="post">
+		<table>
+			<tr>
+				<th>test name</th>
+				<td><input type="text" name="test_name" class="form-control" value="{{data['up'][0]['test_name']}}"></td>
+			</tr>
+			<tr>
+				<th>description</th>
+				<td><textarea name="description" class="form-control">{{data['up'][0]['description']}}</textarea></td>
+			</tr>
+			<tr>
+				<th>Rate</th>
+				<td><input type="text" name="rate" class="form-control" value="{{data['up'][0]['rate']}}"></td>
+			</tr>
+			<tr>
+				<td><input type="submit" name="update" value="update"></td>
+			</tr>
+		</table>
+	</form>
+        {% else %}
+        <form method="post">
+		<table>
+			<tr>
+				<th>test name</th>
+				<td><input type="text" class="form-control" name="test_name"></td>
+			</tr>
+			<tr>
+				<th>description</th>
+				<td><textarea name="description" class="form-control"></textarea></td>
+			</tr>
+			<tr>
+				<th>Rate</th>
+				<td><input type="text" name="rate" class="form-control"></td>
+			</tr>
+			<tr>
+				<td><input type="submit" name="submit"></td>
+			</tr>
+		</table>
+	</form>
+        {% endif %}
+    </div>
+<br><br>
+    <div class="row">
+        {% for i in data['view'] %}
+        <div class="col-md-4">
+            <div class="card shadow mb-4">
+                <div class="card-body">
+                    <h5 class="card-text"><strong>Test Name:</strong>  <span class="font">{{i.test_name}}</span></h5>
+                    <h5 class="card-text"><strong>Description:</strong><span class="font">{{i.description}}</span> </h5>
+                    <h5 class="card-text"><strong>Rate:</strong>  <span class="font">{{i.rate}}</span></h5>
+                    <br>
+                    <div class="text-center">
+                        <a href="?action=update&test_id={{i.test_id}}" class="btn btn-success">Update</a>
+                        <a href="?action=delete&test_id={{i.test_id}}" class="btn btn-danger">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+ <script src="
+https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+    </script>
+<script>
+	$(function() {
+       $("input[name='rate']").on('input', function(e) {
+        	$(this).val($(this).val().replace(/[^0-9]/g, ''));
+            
+        });
+    });
+    </script>
+{% include 'footer.html' %}

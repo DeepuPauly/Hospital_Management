@@ -1,0 +1,58 @@
+{% include 'doctor_header.html' %}
+<br>
+<br>
+<br>
+<style type="text/css">
+	 .navbar-area {
+          background-color: blue; /* Change this to your desired shade of blue */
+        }
+        .new {
+    font-family: serif; /* Replace 'YourNewFont' with the desired font */
+    color: black;
+    text-align: center;
+    font-size: 3em;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(1, 3, 7, 0.2);
+    display: inline-block;
+    padding: 10px;
+}
+</style>
+
+<div class="container py-lg-5">
+	<center>
+	<h1 class="new">Disease History</h1>
+	</center>
+    <div class="table-responsive">
+        <table class="table table-dark table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Disease History</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in data['view'] %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ i.description }}</td>
+                    <td>{{ i.mdate }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+<div class="mt-4 d-flex justify-content-center">
+    <a href="d_addprescriptions" class="btn btn-primary btn-lg mr-2">Add Prescriptions</a>
+    <a href="d_adddisease" class="btn btn-success btn-lg mx-2">Add Disease Details</a>
+    <a href="d_addlabtest" class="btn btn-info btn-lg mx-2">Add Lab Test</a>
+    <a href="d_requestspecialist" class="btn btn-danger btn-lg mx-2">Request Specialist</a>
+    <a href="d_viewlabtest" class="btn btn-secondary btn-lg ml-2">View Lab Test</a>
+</div>
+
+
+</div>
+{% include 'footer.html' %}

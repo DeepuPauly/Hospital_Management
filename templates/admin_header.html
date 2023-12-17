@@ -1,0 +1,225 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOSPITAL | ADMIN</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+</head>
+<body>
+    
+<a href="admin_manage_department">MANAGE DEPARTMENT</a>
+<a href="admin_manage_reception">MANAGE RECEPTIONS</a>
+<a href="admin_manage_pharmacy">MANAGE PHARMACY</a>
+<a href="admin_manage_laboratary">MANAGE LABORATARY</a>
+<a href="admin_manage_doctor">MANAGE DOCTOR</a>
+<a href="admin_manage_specialist">MANAGE SPECIALIST</a>
+<a href="admin_manage_patients">VIEW PATIENTS</a>
+<a href="admin_view_payment">VIEW PAYMENT</a>
+<a href="admin_manage_ambulances">MANAGE AMBULANCE</a>
+<a href="login_all">LOGOUT</a> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>HOSPITAL | ADMIN</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="/static/adminassets/img/newlogo.jpeg" rel="icon">
+  <link href="/static/adminassets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/static/adminassets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="/static/adminassets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/static/adminassets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/static/adminassets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/static/adminassets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="/static/adminassets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script> -->
+  <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+  <!-- Template Main CSS File -->
+  <link href="/static/adminassets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: iPortfolio - v3.10.0
+  * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+
+    <!-- <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    /> -->
+    <!-- //Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
+    />
+    <!-- fonts -->
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&family=Poppins:ital,wght@0,100;0,200;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
+    </style>
+
+
+<style>
+
+  .modal-confirm {		
+    color: #636363;
+    width: 325px;
+    font-size: 14px;
+  }
+  .modal-confirm .modal-content {
+    padding: 20px;
+    border-radius: 5px;
+    border: none;
+  }
+  .modal-confirm .modal-header {
+    border-bottom: none;   
+    position: relative;
+  }
+  .modal-confirm h4 {
+    text-align: center;
+    font-size: 26px;
+    margin: 30px 0 -15px;
+  }
+  .modal-confirm .form-control, .modal-confirm .btn {
+    min-height: 40px;
+    border-radius: 3px; 
+  }
+  .modal-confirm .close {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+  }	
+  .modal-confirm .modal-footer {
+    border: none;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 13px;
+  }	
+  .modal-confirm .icon-box {
+    color: #fff;		
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: -70px;
+    width: 95px;
+    height: 95px;
+    border-radius: 50%;
+    z-index: 9;
+    background: #b8cf08;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+  }
+  .modal-confirm .icon-box i {
+    font-size: 58px;
+    position: relative;
+    top: 3px;
+  }
+  .modal-confirm.modal-dialog {
+    margin-top: 80px;
+  }
+  .modal-confirm .btn {
+    color: #fff;
+    border-radius: 4px;
+    background: #f10808;
+    text-decoration: none;
+    transition: all 0.4s;
+    line-height: normal;
+    border: none;
+  }
+  .modal-confirm .btn:hover, .modal-confirm .btn:focus {
+    background: #b35b2b;
+    outline: none;
+  }
+  
+      </style>
+</head>
+
+<body>
+
+  <!-- ======= Mobile nav toggle button ======= -->
+  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+
+  <!-- ======= Header ======= -->
+  <header id="header">
+    <div class="d-flex flex-column">
+
+      <div class="profile">
+        <img src="/static/adminassets/img/newlogo.jpeg" alt="" class="img-fluid rounded-circle">
+        <h1 class="text-light"><a href="admin_home">ADMIN</a></h1>
+        <div class="social-links mt-3 text-center">
+          <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+          <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+          <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+          <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+          <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+        </div>
+      </div>
+
+      <nav id="navbar" class="nav-menu navbar">
+        <ul>
+          <li><a href="/admin_home" class="nav-link scrollto active"><i class="bi bi-house"></i> <span>HOME</span></a></li>
+          <li><a href="/admin_manage_department" class="nav-link scrollto"><i class="fa fa-database"></i> <span>DEPARTMENT</span></a></li>
+          <li><a href="/admin_manage_reception" class="nav-link scrollto"><i class="bi bi-receipt-cutoff"></i> <span>RECEPTIONS</span></a></li>
+          <li><a href="/admin_manage_pharmacy" class="nav-link scrollto"><i class="bi bi-capsule"></i> <span>PHARMACY</span></a></li>
+          <li><a class="nav-link scrollto" href="/admin_manage_laboratary"><i class="fa fa-heartbeat"></i> <span>LABORATARY</span></a></li>
+          <li><a href="/admin_manage_doctor" class="nav-link scrollto"><i class="fa fa-user-md"></i> <span>DOCTOR</span></a></li>
+          <li><a href="/admin_manage_specialist" class="nav-link scrollto"><i class="fa fa-stethoscope"></i> <span>SPECIALIST</span></a></li>
+          <li><a href="/admin_manage_patients" class="nav-link scrollto"><i class="fa fa-wheelchair"></i> <span>PATIENTS</span></a></li>
+          <li><a href="/admin_view_payment" class="nav-link scrollto"><i class="bi bi-wallet2"></i> <span>PAYMENT</span></a></li>
+          <li><a href="/admin_manage_ambulances" class="nav-link scrollto"><i class="fa fa-ambulance"></i> <span>AMBULANCE</span></a></li>
+          <li><a href="#myModal" id="trigger-btn" data-toggle="modal"><i class="bi bi-box-arrow-right"></i> <span>LOGOUT</span></a></li>
+        </ul>
+      </nav><!-- .nav-menu -->
+    </div>
+
+
+
+
+    <div id="myModal" class="modal fade">
+      <div class="modal-dialog modal-confirm">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <div>
+              <!-- Add the image above the title -->
+              <img src="/static/amb_assets/images/log.png" alt="Your Image" style="border-radius: 50%; width: 120px; height: 100px; margin: 0 auto;">
+            </div>
+            <h4 class="modal-title w-100 mt-3">Are You Sure!</h4>
+          </div>
+          <div class="modal-body">
+            <!-- Add your content here -->
+          </div>
+          <div class="modal-footer">
+            <a href="/" class="btn btn-danger btn-block">Yes</a>
+            <button class="btn btn-success btn-block" data-dismiss="modal">No</button>
+          </div>
+        </div>
+      </div>
+    </div>   
+
+  </header><!-- End Header -->
